@@ -1,0 +1,22 @@
+.search-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    margin: 25px;
+}
+
+.input-size {
+    min-width: 300px;
+    max-width: 450px;
+}
+
+.button-direction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+        margin: 0px 10px;
+    }
+}
