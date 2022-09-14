@@ -34,6 +34,25 @@
             "prefix": "app",
             "style": "kebab-case"
           }
+        ],
+        "quotes": ["error", "single", {
+          "allowTemplateLiterals": true
+        }],
+        "semi": ["error", "always"],
+        "semi-style": ["error", "last"],
+        "max-len": [
+          "error", 
+          { "code": 140 }
+        ],
+        "indent": ["error", 2],
+        "no-irregular-whitespace": [
+          "error", 
+          { 
+            "skipStrings": true,
+            "skipComments": true,
+            "skipRegExps": true,
+            "skipTemplates": true 
+          }
         ]
       }
     },
