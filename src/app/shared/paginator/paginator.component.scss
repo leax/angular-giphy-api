@@ -1,4 +1,8 @@
+@import 'spacing.scss';
+
 .paginator-container {
-    padding: 0px 25px;
-    margin: 0px 25px;
+    @include margin('large', 'left');
+    @include margin('large', 'right');
+    @include padding('large', 'left');
+    @include padding('large', 'right');
 }

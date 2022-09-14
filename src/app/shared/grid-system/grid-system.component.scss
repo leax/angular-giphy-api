@@ -1,6 +1,8 @@
+@import 'spacing.scss';
+
 .grid-system-container {
-    padding: 25px;
-    margin: 25px;
+    @include margin('large');
+    @include padding('large');
 
     mat-grid-tile {
         background: lightblue;

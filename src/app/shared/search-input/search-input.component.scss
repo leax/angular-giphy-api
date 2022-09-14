@@ -1,10 +1,11 @@
+@import 'spacing.scss';
+@import 'mixins.scss';
+
 .search-input-container {
-    display: flex;
+    @include center();
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    margin: 25px;
+    @include margin('large');
+    @include padding('large');
 }
 
 .input-size {
@@ -13,10 +14,9 @@
 }
 
 .button-direction {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include center();
     button {
-        margin: 0px 10px;
+        @include margin('medium', 'left');
+        @include margin('medium', 'right');
     }
 }
