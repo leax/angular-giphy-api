@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-grid-system',
   templateUrl: './grid-system.component.html',
   styleUrls: ['./grid-system.component.scss']
 })
-export class GridSystemComponent implements OnInit {
+export class GridSystemComponent {
 
   // Set columns number
   @Input()
@@ -16,8 +16,5 @@ export class GridSystemComponent implements OnInit {
     rowHeightRatio: string = '3:1';
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -1,18 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss']
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent {
 
   @Input()
     label: string = 'Search';
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
