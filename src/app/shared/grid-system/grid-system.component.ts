@@ -15,6 +15,9 @@ export class GridSystemComponent {
   @Input()
     rowHeightRatio: string = '3:1';
 
+  @Input()
+    images: Array<string> = new Array();
+
   constructor() { }
 
 }

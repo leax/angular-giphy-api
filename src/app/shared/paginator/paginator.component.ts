@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-paginator',
@@ -7,6 +8,19 @@ import { Component } from '@angular/core';
 })
 export class PaginatorComponent {
 
+  // Settings for Paginator
+  @Input()
+    length = 9;
+  @Input()
+    pageSize = 9;
+
+  @Output()
+    changePageEvent: EventEmitter<number> = new EventEmitter();
+
   constructor() { }
+
+  changePage($event: PageEvent) {
+    this.changePageEvent.emit($event.pageIndex);
+  }
 
 }

@@ -1,5 +1,5 @@
 <div class="main-wrapper">
   <app-search-input></app-search-input>
-  <app-grid-system [colsNumber]="3" rowHeightRatio="3:1"></app-grid-system>
-  <app-paginator></app-paginator>
+  <app-grid-system [colsNumber]="3" rowHeightRatio="3:1" [images]="images"></app-grid-system>
+  <app-paginator [pageSize]="pageSize" [length]="length" (changePageEvent)="changePage($event)"></app-paginator>
 </div>
