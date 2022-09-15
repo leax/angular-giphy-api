@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin, Observable } from 'rxjs';
 
 // TODO: move key to secret
 const giphy = require('giphy-api')('liwQy9zKsLINUSamn86uk31Um8eAKknI');
@@ -50,12 +51,24 @@ export class AppComponent implements OnInit {
 
   randomImages(searchInput: string) {
     this.setLocalParameters(searchInput, true);
-    giphy.random({
-      q: this.searchInput,
-      // limit: this.pageSize,
-      // offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
-    }).then((res: any) => {
-      console.log(res);
+    // giphy.random({
+    //   q: this.searchInput,
+    //   // limit: this.pageSize,
+    //   // offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
+    // }).then((res: any) => {
+    //   console.log(res);
+    // });
+
+    let fetches = new Array<Observable<any>>();
+    for(let i = 0; i < this.pageSize; i++) {
+      fetches.push(giphy.random(this.searchInput));
+    }
+
+    console.log(fetches);
+
+    forkJoin(fetches).subscribe(results => {
+      console.log(results);
+      this.setResponseData({ data: results.map(x => x.data)}, true);
     });
   }
 
@@ -79,9 +92,12 @@ export class AppComponent implements OnInit {
         this.images = res.data.map((x: any) => x.embed_url);
       }
       // Set the pagination
-      if(res.pagination) {
+      if(res.pagination && !isTrending) {
         // TODO: Validate if pagination.offset is same than current page
-        this.length = !isTrending ? res.pagination.total_count : this.pageSize;
+        this.length = res.pagination.total_count;
+        console.log(this.length);
+      } else {
+        this.length = this.pageSize;
       }
     }
   }
