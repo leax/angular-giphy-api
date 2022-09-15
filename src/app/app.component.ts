@@ -28,46 +28,40 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    giphy.trending({
-      limit: this.pageSize
-    }).then((res: any) => {
-      this.setResponseData(res, true);
-      console.log(res);
-    });
+    this.listTrendingImages();
   }
 
   searchImages(searchInput: string) {
-    console.log(searchInput);
+    if(!searchInput) {
+      this.listTrendingImages();
+      return;
+    }
+
     this.setLocalParameters(searchInput);
+    
     giphy.search({
       q: this.searchInput,
       limit: this.pageSize,
       offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
     }).then((res: any) => {
       this.setResponseData(res);
-      console.log(res);
     });
   }
 
   randomImages(searchInput: string) {
+    if(!searchInput) {
+      this.listTrendingImages();
+      return;
+    }
+
     this.setLocalParameters(searchInput, true);
-    // giphy.random({
-    //   q: this.searchInput,
-    //   // limit: this.pageSize,
-    //   // offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
-    // }).then((res: any) => {
-    //   console.log(res);
-    // });
 
     let fetches = new Array<Observable<any>>();
     for(let i = 0; i < this.pageSize; i++) {
       fetches.push(giphy.random(this.searchInput));
     }
 
-    console.log(fetches);
-
     forkJoin(fetches).subscribe(results => {
-      console.log(results);
       this.setResponseData({ data: results.map(x => x.data)}, true);
     });
   }
@@ -85,6 +79,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  private listTrendingImages() {
+    giphy.trending({
+      limit: this.pageSize
+    }).then((res: any) => {
+      this.setResponseData(res, true);
+    });
+  }
+
   private setResponseData(res: any, isTrending = false) {
     if(res) {
       // Populate image array
@@ -95,7 +97,6 @@ export class AppComponent implements OnInit {
       if(res.pagination && !isTrending) {
         // TODO: Validate if pagination.offset is same than current page
         this.length = res.pagination.total_count;
-        console.log(this.length);
       } else {
         this.length = this.pageSize;
       }
