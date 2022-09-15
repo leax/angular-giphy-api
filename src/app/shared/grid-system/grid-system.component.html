@@ -1,4 +1,4 @@
-<div class="grid-system-container">
+<div *ngIf="!isLoading" class="grid-system-container">
     <mat-grid-list [cols]="colsNumber" [rowHeight]="rowHeightRatio">
         <mat-grid-tile *ngFor="let image of images | sliceArray: itemsPerPage">
             <div class="iframe-container">
@@ -6,4 +6,8 @@
             </div>
         </mat-grid-tile>
     </mat-grid-list>
+</div>
+
+<div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
 </div>

@@ -1,5 +1,5 @@
 <div class="main-wrapper">
-  <app-search-input (searchEvent)="searchImages($event)" (randomEvent)="randomImages($event)"></app-search-input>
-  <app-grid-system [colsNumber]="3" rowHeightRatio="3:1" [images]="images" [itemsPerPage]="pageSize"></app-grid-system>
-  <app-paginator [pageSize]="pageSize" [length]="length" (changePageEvent)="changePage($event)"></app-paginator>
+  <app-search-input (searchEvent)="searchImages($event)" (randomEvent)="randomImages($event)" [isLoading]="isLoading"></app-search-input>
+  <app-grid-system [colsNumber]="3" rowHeightRatio="3:1" [images]="images" [itemsPerPage]="pageSize" [isLoading]="isLoading"></app-grid-system>
+  <app-paginator [pageSize]="pageSize" [length]="length" (changePageEvent)="changePage($event)" [isLoading]="isLoading"></app-paginator>
 </div>

@@ -1,4 +1,5 @@
 @import 'spacing.scss';
+@import 'mixins.scss';
 
 .grid-system-container {
     @include margin('large');
@@ -18,4 +19,8 @@
     iframe {
         position:absolute
     }
+}
+
+.spinner-container {
+    @include center();
 }

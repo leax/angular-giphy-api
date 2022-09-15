@@ -10,6 +10,9 @@ export class SearchInputComponent {
   @Input()
     label: string = 'Search';
 
+  @Input()
+    isLoading: boolean = false;
+
   @Output()
     searchEvent: EventEmitter<string> = new EventEmitter();
 

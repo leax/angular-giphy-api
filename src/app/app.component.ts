@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
 
   images = new Array<string>();
 
+  isLoading = false;
+
   private searchInput = '';
 
   private isRandom = false;
@@ -32,13 +34,14 @@ export class AppComponent implements OnInit {
   }
 
   searchImages(searchInput: string) {
+    this.isLoading = true;
     if(!searchInput) {
       this.listTrendingImages();
       return;
     }
 
     this.setLocalParameters(searchInput);
-    
+
     giphy.search({
       q: this.searchInput,
       limit: this.pageSize,
@@ -49,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   randomImages(searchInput: string) {
+    this.isLoading = true;
     if(!searchInput) {
       this.listTrendingImages();
       return;
@@ -67,6 +71,7 @@ export class AppComponent implements OnInit {
   }
 
   changePage(pageIndex: number) {
+    this.isLoading = true;
     if(pageIndex >= 0) {
       this.currentPage = pageIndex;
       if(!this.isRandom) {
@@ -80,6 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   private listTrendingImages() {
+    this.isLoading = true;
     giphy.trending({
       limit: this.pageSize
     }).then((res: any) => {
@@ -101,6 +107,7 @@ export class AppComponent implements OnInit {
         this.length = this.pageSize;
       }
     }
+    this.isLoading = false;
   }
 
   private setLocalParameters(searchInput: string, isRandome = false) {

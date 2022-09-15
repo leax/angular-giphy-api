@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // CUSTOM COMPONENTS
 import { GridSystemComponent } from './grid-system/grid-system.component';
@@ -24,6 +25,7 @@ const MATERIAL = [
   MatIconModule,
   MatButtonModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule
 ];
 
 const CUSTOM = [

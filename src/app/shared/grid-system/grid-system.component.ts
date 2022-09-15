@@ -21,6 +21,9 @@ export class GridSystemComponent {
   @Input()
     images: Array<string> = new Array();
 
+  @Input()
+    isLoading: boolean = false;
+
   constructor() { }
 
 }

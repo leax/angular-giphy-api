@@ -17,6 +17,9 @@ export class PaginatorComponent {
   @Output()
     changePageEvent: EventEmitter<number> = new EventEmitter();
 
+  @Input()
+    isLoading: boolean = false;
+
   constructor() { }
 
   changePage($event: PageEvent) {
