@@ -1,13 +1,12 @@
+@import 'spacing.scss';
+
 .main-wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
+
+    h1 {
+        @include padding('xlarge', 'top');
+        text-align: center;
+    }
 }
-
-// app-search-input {
-//     flex: 1 1 auto;
-// }
-
-// app-grid-system {
-//     flex: 2 1 auto;
-// }

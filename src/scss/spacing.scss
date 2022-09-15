@@ -2,6 +2,7 @@ $spacing-sizes: (
     small: 6px,
     medium: 12px,
     large: 24px,
+    xlarge: 48px
 );
 
 @mixin padding($size, $direction: null, $important: null) {
