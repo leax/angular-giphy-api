@@ -16,6 +16,9 @@ export class GridSystemComponent {
     rowHeightRatio: string = '3:1';
 
   @Input()
+    itemsPerPage: number = 9;
+
+  @Input()
     images: Array<string> = new Array();
 
   constructor() { }

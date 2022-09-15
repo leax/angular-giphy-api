@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { GridSystemComponent } from './grid-system/grid-system.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { CoreModule } from '../core/core.module';
 
 
 const MATERIAL = [
@@ -37,6 +38,7 @@ const CUSTOM = [
   ],
   imports: [
     CommonModule,
+    CoreModule,
     ...MATERIAL
   ],
   exports: [

@@ -1,5 +1,9 @@
 <div class="grid-system-container">
     <mat-grid-list [cols]="colsNumber" [rowHeight]="rowHeightRatio">
-        <mat-grid-tile *ngFor="let image of images">{{image}}</mat-grid-tile>
+        <mat-grid-tile *ngFor="let image of images | sliceArray: itemsPerPage">
+            <div class="iframe-container">
+                <iframe [src]="image | safe" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            </div>
+        </mat-grid-tile>
     </mat-grid-list>
 </div>
