@@ -1,11 +1,11 @@
 <div class="search-input-container">
     <mat-form-field class="input-size" appearance="fill" floatLabel="always">
         <mat-label>{{label}}</mat-label>
-        <input matInput type="search" placeholder="Input search value">
+        <input matInput type="search" placeholder="Input search value" [(ngModel)]="searchInput">
         <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <div class="button-direction">
-        <button mat-raised-button color="primary">Search</button>
-        <button mat-raised-button color="accent">Random</button>
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+        <button mat-raised-button color="accent" (click)="onRandom()">Random</button>
     </div>
 </div>

@@ -15,21 +15,16 @@ export class AppComponent implements OnInit {
 
   images = new Array<string>();
 
-  searchInput = 'pokemon';
+  private searchInput = '';
 
-  isRandom = false;
+  private isRandom = false;
 
   // Pagination params
   readonly pageSize = 9;
   length = 9;
   currentPage = 0;
 
-  constructor() {
-    // For testing purpose
-    // for(let i = 0; i < this.pageSize; i++) {
-    //   this.images.push(`${i+1}`);
-    // }
-  }
+  constructor() { }
 
   ngOnInit(): void {
     giphy.trending({
@@ -40,23 +35,25 @@ export class AppComponent implements OnInit {
     });
   }
 
-  searchImages() {
-    this.isRandom = false;
+  searchImages(searchInput: string) {
+    console.log(searchInput);
+    this.setLocalParameters(searchInput);
     giphy.search({
       q: this.searchInput,
       limit: this.pageSize,
-      offset: this.currentPage
+      offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
     }).then((res: any) => {
+      this.setResponseData(res);
       console.log(res);
     });
   }
 
-  randomImages() {
-    this.isRandom = true;
+  randomImages(searchInput: string) {
+    this.setLocalParameters(searchInput, true);
     giphy.random({
       q: this.searchInput,
-      limit: this.pageSize,
-      offset: this.currentPage
+      // limit: this.pageSize,
+      // offset: this.currentPage > 0 ? this.currentPage * this.pageSize : 0
     }).then((res: any) => {
       console.log(res);
     });
@@ -66,9 +63,9 @@ export class AppComponent implements OnInit {
     if(pageIndex >= 0) {
       this.currentPage = pageIndex;
       if(!this.isRandom) {
-        this.searchImages();
+        this.searchImages(this.searchInput);
       } else {
-        this.randomImages();
+        this.randomImages(this.searchInput);
       }
     } else {
       this.currentPage = 0;
@@ -87,5 +84,10 @@ export class AppComponent implements OnInit {
         this.length = !isTrending ? res.pagination.total_count : this.pageSize;
       }
     }
+  }
+
+  private setLocalParameters(searchInput: string, isRandome = false) {
+    this.searchInput = searchInput;
+    this.isRandom = isRandome;
   }
 }

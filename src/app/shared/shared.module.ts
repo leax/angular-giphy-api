@@ -14,6 +14,7 @@ import { GridSystemComponent } from './grid-system/grid-system.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { CoreModule } from '../core/core.module';
+import { FormsModule } from '@angular/forms';
 
 
 const MATERIAL = [
@@ -39,6 +40,7 @@ const CUSTOM = [
   imports: [
     CommonModule,
     CoreModule,
+    FormsModule,
     ...MATERIAL
   ],
   exports: [
